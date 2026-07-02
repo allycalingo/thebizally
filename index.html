@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Biz Ally — GoHighLevel Systems, Funnels & Course Ecosystems</title>
+<meta name="description" content="I help coaches, educators, and online businesses build scalable backend systems through funnels, automations, CRM workflows, and course/membership platforms.">
+
+<!-- Fonts: Space Grotesk (display) + IBM Plex Sans (body) + IBM Plex Mono (data/labels) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink: #14161C;
+    --ink-soft: #1C1F28;
+    --ink-line: #2A2E39;
+    --paper: #F6F3EC;
+    --white: #FFFFFF;
+    --amber: #F2A93B;
+    --amber-dim: #C98A2A;
+    --cobalt: #4361EE;
+    --cobalt-dim: #2F46B8;
+    --muted: #9B9686;
+    --muted-on-paper: #6B6F7A;
+    --max: 1180px;
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--ink);
+    color: var(--white);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,h2,h3,h4{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    line-height: 1.08;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .mono{ font-family: 'IBM Plex Mono', monospace; }
+
+  a{ color: inherit; text-decoration: none; }
+  img{ max-width: 100%; display:block; }
+
+  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+  ::selection{ background: var(--amber); color: var(--ink); }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(20,22,28,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 28px;
+    max-width: var(--max); margin: 0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+  .brand .dot{
+    width:9px; height:9px; border-radius:50%;
+    background: var(--amber);
+    box-shadow: 0 0 0 4px rgba(242,169,59,0.15);
+  }
+  nav.links{ display:flex; gap:32px; align-items:center; }
+  nav.links a{
+    font-size: 0.92rem; color: var(--muted); transition: color .2s ease;
+  }
+  nav.links a:hover{ color: var(--white); }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.82rem; font-weight:500;
+    padding: 11px 20px; border-radius: 999px;
+    border: 1px solid transparent;
+    cursor:pointer; transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    white-space: nowrap;
+  }
+  .btn-primary{ background: var(--amber); color: var(--ink); }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(242,169,59,0.55); }
+  .btn-ghost{ border-color: var(--ink-line); color: var(--white); }
+  .btn-ghost:hover{ border-color: var(--cobalt); background: rgba(67,97,238,0.1); }
+  .btn-cobalt{ background: var(--cobalt); color: var(--white); }
+  .btn-cobalt:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(67,97,238,0.6); }
+
+  .nav-cta{ display:flex; align-items:center; gap:18px; }
+  .menu-toggle{ display:none; background:none; border:none; color:var(--white); font-size:1.4rem; cursor:pointer; }
+
+  @media (max-width: 860px){
+    nav.links{
+      position: fixed; inset: 66px 0 0 0; height: calc(100vh - 66px);
+      background: var(--ink); flex-direction: column; justify-content:flex-start;
+      padding: 36px 28px; gap: 24px; transform: translateX(100%);
+      transition: transform .3s ease; z-index: 90;
+    }
+    nav.links.open{ transform: translateX(0); }
+    nav.links a{ font-size: 1.1rem; }
+    .menu-toggle{ display:block; }
+    .nav-cta .btn-ghost{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    padding: 96px 0 70px;
+    overflow: hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; top:-200px; right:-160px; width:560px; height:560px;
+    background: radial-gradient(circle, rgba(67,97,238,0.22), transparent 65%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.08em;
+    text-transform: uppercase; color: var(--amber);
+    padding: 7px 14px; border: 1px solid rgba(242,169,59,0.35); border-radius: 999px;
+    margin-bottom: 22px; background: rgba(242,169,59,0.06);
+  }
+  .hero h1{
+    font-size: clamp(2.1rem, 4.4vw, 3.35rem);
+    color: var(--white);
+  }
+  .hero h1 .accent{ color: var(--amber); }
+  .hero p.lead{
+    margin-top: 22px; font-size: 1.08rem; line-height:1.65;
+    color: #C9C6BC; max-width: 46ch;
+  }
+  .hero-ctas{ display:flex; gap:14px; margin-top: 32px; flex-wrap: wrap; }
+
+  .hero-visual{ position:relative; }
+  .flow-card{
+    background: var(--ink-soft);
+    border: 1px solid var(--ink-line);
+    border-radius: 20px;
+    padding: 26px 22px 20px;
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,0.6);
+  }
+  .flow-card .flow-label{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing:0.08em; margin-bottom: 14px; display:block;
+  }
+  .flow-path{
+    fill:none; stroke: var(--ink-line); stroke-width: 2;
+  }
+  .flow-path.animated{
+    stroke: var(--amber);
+    stroke-dasharray: 620;
+    stroke-dashoffset: 620;
+    animation: draw 2.4s ease forwards 0.3s;
+  }
+  @keyframes draw{ to{ stroke-dashoffset: 0; } }
+  .flow-node{ transition: transform .2s ease; }
+  .flow-node rect{ fill: var(--ink); stroke: var(--ink-line); stroke-width:1.5; }
+  .flow-node text{ font-family:'IBM Plex Mono', monospace; fill: var(--white); font-size: 11px; }
+  .flow-node .n-sub{ fill: var(--muted); font-size: 9px; }
+  .flow-node.hot rect{ stroke: var(--amber); }
+  .flow-node.cool rect{ stroke: var(--cobalt); }
+  .pulse{ animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ opacity:0.5; } 50%{ opacity:1; } }
+
+  /* ---------- STATS ---------- */
+  .stats{ border-top:1px solid var(--ink-line); border-bottom:1px solid var(--ink-line); background: var(--ink-soft); }
+  .stats-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr);
+    padding: 40px 0;
+  }
+  .stat{ padding: 0 24px; border-left: 1px solid var(--ink-line); }
+  .stat:first-child{ border-left:none; }
+  .stat .num{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size: 2.1rem; color: var(--amber); }
+  .stat .num.cool{ color: var(--cobalt); }
+  .stat .cap{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color: var(--muted); margin-top:6px; text-transform: uppercase; letter-spacing:0.04em; }
+
+  .industries{ padding: 22px 0 0; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  .industries .tag-label{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-right:6px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
+    padding: 6px 13px; border-radius: 999px; border:1px solid var(--ink-line); color:#D8D5CB;
+  }
+
+  @media (max-width: 860px){
+    .stats-grid{ grid-template-columns: repeat(2,1fr); gap: 24px 0; }
+    .stat{ border-left:none; padding: 0 8px; }
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{ padding: 96px 0; }
+  .sec-head{ max-width: 640px; margin-bottom: 56px; }
+  .sec-eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.08em;
+    text-transform: uppercase; color: var(--cobalt); margin-bottom: 14px; display:block;
+  }
+  .sec-head h2{ font-size: clamp(1.7rem, 3vw, 2.4rem); }
+  .on-paper .sec-eyebrow{ color: var(--amber-dim); }
+
+  .reveal{ opacity:0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform: none; }
+
+  /* ---------- CASE STUDIES ---------- */
+  .case{
+    display:grid; grid-template-columns: 0.95fr 1.05fr; gap: 54px; align-items: start;
+    padding: 50px 0;
+    border-top: 1px solid var(--ink-line);
+  }
+  .case:first-of-type{ border-top: none; }
+  .case.flip{ grid-template-columns: 1.05fr 0.95fr; }
+  .case.flip .case-media{ order:2; }
+  .case.flip .case-body{ order:1; }
+
+  .case-index{ font-family:'IBM Plex Mono', monospace; color: var(--muted); font-size: 0.85rem; margin-bottom:10px; display:block; }
+  .case-body h3{ font-size: clamp(1.4rem, 2.4vw, 1.8rem); margin-bottom: 6px; }
+  .case-body .case-sub{ color: var(--muted); font-family:'IBM Plex Mono', monospace; font-size:0.85rem; margin-bottom: 22px; }
+
+  .case-block{ margin-bottom: 20px; }
+  .case-block .k{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.08em; color: var(--amber); margin-bottom:8px; display:block;
+  }
+  .case-block p{ margin:0; color:#D6D3C9; line-height:1.6; font-size:0.98rem; }
+  .case-block ul{ margin:0; padding-left: 18px; color:#D6D3C9; line-height:1.75; font-size:0.98rem; }
+
+  .tool-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 6px; }
+  .tool-chip{
+    font-family:'IBM Plex Mono', monospace; font-size:0.76rem;
+    padding: 5px 12px; border-radius: 6px; background: rgba(67,97,238,0.12);
+    border: 1px solid rgba(67,97,238,0.35); color:#C7CFFB;
+  }
+
+  .outcome-box{
+    margin-top: 22px; padding: 18px 20px; border-radius: 14px;
+    background: rgba(242,169,59,0.07); border: 1px solid rgba(242,169,59,0.25);
+  }
+
+  /* media placeholder frames */
+  .case-media{ display:flex; flex-direction:column; gap:14px; }
+  .shot{
+    position:relative; border-radius: 14px; overflow:hidden;
+    background: var(--ink-soft); border: 1px dashed var(--ink-line);
+    aspect-ratio: 16/10; display:flex; flex-direction:column;
+  }
+  .shot .chrome{
+    display:flex; gap:6px; padding: 10px 12px; border-bottom:1px solid var(--ink-line);
+  }
+  .shot .chrome span{ width:8px; height:8px; border-radius:50%; background: var(--ink-line); }
+  .shot .shot-body{
+    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap: 8px; padding: 20px; text-align:center;
+  }
+  .shot .shot-body .icon{ font-size:1.6rem; opacity:0.5; }
+  .shot .shot-body .cap{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color: var(--muted); }
+  .shot.small{ aspect-ratio: 16/7; }
+  .shot-row{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+
+  @media (max-width: 860px){
+    .case, .case.flip{ grid-template-columns: 1fr; }
+    .case.flip .case-media, .case.flip .case-body{ order: unset; }
+  }
+
+  /* ---------- CAPABILITIES ---------- */
+  .capabilities{ background: var(--paper); color: var(--ink); }
+  .cap-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .cap-panel{
+    background: var(--white); border-radius: 18px; padding: 30px 26px;
+    border: 1px solid #E7E2D6;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .cap-panel:hover{ transform: translateY(-6px); box-shadow: 0 24px 40px -20px rgba(20,22,28,0.25); }
+  .cap-panel .cap-icon{
+    width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; margin-bottom: 20px; color:var(--white);
+  }
+  .cap-panel:nth-child(1) .cap-icon{ background: var(--amber-dim); }
+  .cap-panel:nth-child(2) .cap-icon{ background: var(--cobalt); }
+  .cap-panel:nth-child(3) .cap-icon{ background: var(--ink); }
+  .cap-panel h3{ font-size:1.2rem; margin-bottom: 16px; color: var(--ink); }
+  .cap-panel ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .cap-panel li{ display:flex; align-items:flex-start; gap:9px; font-size:0.94rem; color:#3A3D33; }
+  .cap-panel li::before{
+    content:"✓"; font-family:'IBM Plex Mono', monospace; font-weight:600; color: var(--amber-dim);
+    flex-shrink:0; margin-top:1px;
+  }
+
+  @media (max-width: 860px){ .cap-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- ABOUT ---------- */
+  .about{ display:grid; grid-template-columns: 0.8fr 1.2fr; gap: 54px; align-items:center; }
+  .about-photo{
+    aspect-ratio: 4/5; border-radius: 20px; background: var(--ink-soft);
+    border: 1px dashed var(--ink-line); display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:10px;
+  }
+  .about-photo .cap{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--muted); }
+  .about-copy p{ font-size:1.05rem; line-height:1.75; color:#D6D3C9; margin: 0 0 18px; }
+  .about-copy .signoff{ font-family:'Space Grotesk', sans-serif; font-weight:600; color: var(--amber); margin-top: 8px; }
+
+  @media (max-width: 860px){ .about{ grid-template-columns: 1fr; } .about-photo{ max-width: 260px; } }
+
+  /* ---------- CTA / CONTACT ---------- */
+  .cta-section{
+    background: linear-gradient(135deg, var(--cobalt) 0%, var(--cobalt-dim) 100%);
+    border-radius: 28px; padding: 64px 56px; text-align:center;
+    margin: 0 auto; max-width: var(--max);
+    position: relative; overflow:hidden;
+  }
+  .cta-section::after{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 85% 20%, rgba(242,169,59,0.35), transparent 55%);
+  }
+  .cta-section > *{ position:relative; z-index:1; }
+  .cta-section h2{ font-size: clamp(1.7rem, 3.4vw, 2.5rem); color:var(--white); max-width: 20ch; margin: 0 auto 16px; }
+  .cta-section p{ color: rgba(255,255,255,0.85); max-width: 46ch; margin: 0 auto 32px; line-height:1.6; }
+  .cta-btns{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .cta-section .btn-primary:hover{ box-shadow: 0 10px 30px -8px rgba(0,0,0,0.4); }
+  .cta-note{ margin-top: 22px; font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color: rgba(255,255,255,0.7); }
+
+  @media (max-width: 640px){ .cta-section{ padding: 46px 24px; } }
+
+  /* ---------- FOOTER ---------- */
+  footer{ border-top:1px solid var(--ink-line); padding: 40px 0; }
+  .foot-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .foot-links{ display:flex; gap:22px; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--muted); }
+  .foot-links a:hover{ color: var(--amber); }
+  .foot-copy{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="dot"></span> THE BIZ ALLY</a>
+    <nav class="links" id="navLinks">
+      <a href="#work">Work</a>
+      <a href="#capabilities">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-primary" href="https://calendly.com/allycalingo/30min" target="_blank" rel="noopener">Book a Call</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="mailto:allycalingo@gmail.com">Email me</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">● GoHighLevel Systems &amp; Automation</span>
+        <h1>Funnels, automations &amp; course ecosystems <span class="accent">built for coaches</span> and online businesses.</h1>
+        <p class="lead">I help coaches, educators, and online businesses build scalable backend systems — funnels, automations, CRM workflows, and course or membership platforms that run without you babysitting them.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://calendly.com/allycalingo/30min" target="_blank" rel="noopener">Book a free strategy call</a>
+          <a class="btn btn-ghost" href="#work">See the work ↓</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="flow-card">
+          <span class="flow-label">// client system, mapped</span>
+          <svg viewBox="0 0 460 300" width="100%" role="img" aria-label="Diagram showing a lead moving through a funnel, automation, CRM, and course system to become a retained client">
+            <path class="flow-path animated" d="M40,40 L40,90 Q40,110 60,110 L140,110 Q160,110 160,130 L160,150 Q160,170 180,170 L260,170 Q280,170 280,190 L280,210 Q280,230 300,230 L400,230" />
+
+            <g class="flow-node hot" transform="translate(0,10)">
+              <rect x="0" y="0" width="90" height="42" rx="8"></rect>
+              <text x="10" y="18">Lead Capture</text>
+              <text class="n-sub" x="10" y="32">Funnel page</text>
+            </g>
+
+            <g class="flow-node" transform="translate(115,80)">
+              <rect x="0" y="0" width="90" height="42" rx="8"></rect>
+              <text x="10" y="18">Automation</text>
+              <text class="n-sub" x="10" y="32">Email / SMS</text>
+            </g>
+
+            <g class="flow-node cool" transform="translate(135,140)">
+              <rect x="0" y="0" width="90" height="42" rx="8"></rect>
+              <text x="10" y="18">CRM Pipeline</text>
+              <text class="n-sub" x="10" y="32">GoHighLevel</text>
+            </g>
+
+            <g class="flow-node" transform="translate(255,200)">
+              <rect x="0" y="0" width="90" height="42" rx="8"></rect>
+              <text x="10" y="18">Course / Membership</text>
+              <text class="n-sub" x="10" y="32">Onboarding</text>
+            </g>
+
+            <g class="flow-node hot" transform="translate(355,208)">
+              <rect x="0" y="0" width="80" height="42" rx="8"></rect>
+              <text x="10" y="18" class="pulse">Client</text>
+              <text class="n-sub" x="10" y="32">Retained</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="num mono">3+</div>
+          <div class="cap">Years in GoHighLevel</div>
+        </div>
+        <div class="stat">
+          <div class="num mono">10+</div>
+          <div class="cap">Funnels built</div>
+        </div>
+        <div class="stat">
+          <div class="num cool mono">30+</div>
+          <div class="cap">Automations created</div>
+        </div>
+        <div class="stat">
+          <div class="num mono">10</div>
+          <div class="cap">Course / membership platforms</div>
+        </div>
+      </div>
+      <div class="industries">
+        <span class="tag-label">Industries supported →</span>
+        <span class="tag">Coaching</span>
+        <span class="tag">Beauty</span>
+        <span class="tag">Healthcare</span>
+        <span class="tag">Ecommerce</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-eyebrow">Selected work</span>
+        <h2>Systems I've built, and what they changed.</h2>
+      </div>
+
+      <!-- Case 1 -->
+      <div class="case reveal">
+        <div class="case-media">
+          <div class="shot">
+  <img src="images/speaking_coursedashboard.png” alt="Course Dashboard" style="width:100%;height:100%;object-fit:cover;">
+</div>
+          <div class="shot-row">
+            <div class="shot small">
+               <img src="images/speaking_coach_workflow.png” alt="Course Dashboard" style="width:100%;height:100%;object-fit:cover;">
+</div>
+            </div>
+            <div class="shot small">
+              <img src="images/speaking_coach_lead_magnet_page.jpg” alt="Course Dashboard" style="width:100%;height:100%;object-fit:cover;">
+</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <span class="case-index mono">01 / Case study</span>
+          <h3>Speaking Academy</h3>
+          <div class="case-sub">Course delivery + student ops, rebuilt as one system</div>
+
+          <div class="case-block">
+            <span class="k">The problem</span>
+            <p>The academy needed a scalable way to deliver courses, manage students, and automate communication without adding headcount just to keep up.</p>
+          </div>
+
+          <div class="case-block">
+            <span class="k">What I built</span>
+            <ul>
+              <li>Full course and membership structure</li>
+              <li>Automated student onboarding sequence</li>
+              <li>Email automations for lessons, reminders, and re-engagement</li>
+              <li>CRM organization for student and lead data</li>
+              <li>End-to-end payment and member journey</li>
+            </ul>
+          </div>
+
+          <div class="case-block">
+            <span class="k">Tools</span>
+            <div class="tool-row">
+              <span class="tool-chip">GoHighLevel</span>
+              <span class="tool-chip">Circle</span>
+              <span class="tool-chip">Automation tools</span>
+            </div>
+          </div>
+
+          <div class="outcome-box">
+            <span class="k">Outcome</span>
+            <ul>
+              <li>Improved student experience from first click to graduation</li>
+              <li>Reduced manual admin work for the team</li>
+              <li>A scalable education ecosystem that runs on its own</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 2 -->
+      <div class="case flip reveal">
+        <div class="case-media">
+          <div class="shot">
+  <img src="images/bookauthor_CRMpipeline.png” alt="CRM Pipeline" style="width:100%;height:100%;object-fit:cover;">
+</div>
+          <div class="shot-row">
+            <div class="shot small">
+              <img src="images/bookauthor_dashboard.png” alt="Course dashboard" style="width:100%;height:100%;object-fit:cover;"> </div>
+            </div>
+            <div class="shot small">
+              <img src="images/leadautomation.png” alt="Course dashboard" style="width:100%;height:100%;object-fit:cover;"> </div>
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <span class="case-index mono">02 / Case study</span>
+          <h3>Book Author Coach Growth System</h3>
+          <div class="case-sub">Lead generation and client conversion, systemized</div>
+
+          <div class="case-block">
+            <span class="k">The problem</span>
+            <p>The coach needed a better way to generate leads and convert them into paying clients. The process was manual, inconsistent, and easy to lose track of.</p>
+          </div>
+
+          <div class="case-block">
+            <span class="k">What I built</span>
+            <ul>
+              <li>Lead capture funnel</li>
+              <li>Assessment and survey flow to qualify leads</li>
+              <li>CRM pipeline to track every stage of the client journey</li>
+              <li>Follow-up automation to keep leads warm</li>
+              <li>Course system to deliver the program</li>
+            </ul>
+          </div>
+
+          <div class="case-block">
+            <span class="k">Tools</span>
+            <div class="tool-row">
+              <span class="tool-chip">GoHighLevel</span>
+              <span class="tool-chip">CRM automation</span>
+            </div>
+          </div>
+
+          <div class="outcome-box">
+            <span class="k">Outcome</span>
+            <p>A structured client acquisition and delivery system. Leads know exactly where they stand, and the coach knows exactly who to follow up with.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 3 -->
+      <div class="case reveal">
+        <div class="case-media">
+          <div class="shot">
+            <img src="images/qs_outline.png” alt="Course Outline” style="width:100%;height:100%;object-fit:cover;"> </div>
+          </div>
+          <div class="shot-row">
+            <div class="shot small">
+              <img src="images/qs_pricing.png” alt="Course Outline” style="width:100%;height:100%;object-fit:cover;"> </div>
+          </div>
+            </div>
+            <div class="shot small">
+              <img src="images/qs_course.png” alt="course still” style="width:100%;height:100%;object-fit:cover;"> </div>
+          </div>
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <span class="case-index mono">03 / Case study</span>
+          <h3>Relationship Coach Growth System</h3>
+          <div class="case-sub">Course Built from Scratch</div>
+
+          <div class="case-block">
+            <span class="k">The problem</span>
+            <p>The brand wants to build a course to offer relationship coaches where they can upsell their SaaS product.</p>
+          </div>
+
+          <div class="case-block">
+            <span class="k">What I built</span>
+            <ul>
+              <li>Built SaaS Product from scratch</li>
+              <li>Researched and built course module</li>
+              <li>Onboarding for coaches and clients</li>
+              <li>Video editing with graphic motion for courses</li>
+              <li>Email marketing sequences</li>
+            </ul>
+          </div>
+
+          <div class="outcome-box">
+            <span class="k">Outcome</span>
+            <p>Members were followed up thoroughly and made sales for the main offer.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section id="capabilities" class="capabilities">
+    <div class="wrap">
+      <div class="sec-head on-paper reveal">
+        <span class="sec-eyebrow">What I can help with</span>
+        <h2>One ally, three systems your business runs on.</h2>
+      </div>
+
+      <div class="cap-grid">
+        <div class="cap-panel reveal">
+          <div class="cap-icon">GH</div>
+          <h3>GoHighLevel Systems</h3>
+          <ul>
+            <li>Funnels &amp; landing pages</li>
+            <li>Pipelines &amp; workflows</li>
+            <li>Email / SMS automation</li>
+            <li>Forms &amp; calendars</li>
+            <li>CRM cleanup</li>
+            <li>Membership setup</li>
+          </ul>
+        </div>
+
+        <div class="cap-panel reveal">
+          <div class="cap-icon">CP</div>
+          <h3>Course Platforms</h3>
+          <ul>
+            <li>Circle</li>
+            <li>Kajabi</li>
+            <li>GHL memberships</li>
+            <li>Student onboarding</li>
+            <li>Course organization</li>
+          </ul>
+        </div>
+
+        <div class="cap-panel reveal">
+          <div class="cap-icon">GS</div>
+          <h3>Growth Systems</h3>
+          <ul>
+            <li>Lead nurture</li>
+            <li>Client onboarding</li>
+            <li>Retention workflows</li>
+            <li>Launch support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap about">
+      <div class="about-photo reveal">
+        <span class="icon" style="font-size:1.8rem;opacity:0.4;">◐</span>
+        <div class=“capmono”> <img src="images/ally_photo.png” style="width:100%;height:100%;object-fit:cover;"> </div>
+      <div class="about-copy reveal">
+        <span class="sec-eyebrow">About</span>
+        <h2 style="margin-bottom:22px;">Hi, I'm Ally (al-LY)! The ally behind The Biz Ally.</h2>
+        <p>I've spent the last 3+ years inside GoHighLevel, building the backend systems that let coaches and online businesses grow without duct-taping ten different tools together.</p>
+        <p>My job isn't to hand you a funnel and disappear. It's to build the full system (funnel, automation, CRM, and course delivery), so your business runs like it has a team behind it, even when it's just you.</p>
+        <p class="signoff">— Ally Calingo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="cta-section reveal">
+        <h2>Let's build the system your business is missing.</h2>
+        <p>Book a free 30-minute call and I'll show you exactly where your funnel, automations, or course delivery are leaking time and clients.</p>
+        <div class="cta-btns">
+          <a class="btn btn-primary" href="https://calendly.com/allycalingo/30min" target="_blank" rel="noopener">Book a free strategy call</a>
+          <a class="btn btn-ghost" style="border-color:rgba(255,255,255,0.35); color:#fff;" href="mailto:allycalingo@gmail.com">Email allycalingo@gmail.com</a>
+        </div>
+        <div class="cta-note">Replies as soon as possible</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div class="brand" style="font-size:0.95rem;"><span class="dot"></span> THE BIZ ALLY</div>
+    <div class="foot-links">
+      <a href="mailto:allycalingo@gmail.com">allycalingo@gmail.com</a>
+      <a href="https://calendly.com/allycalingo/30min" target="_blank" rel="noopener">Book a call</a>
+    </div>
+    <div class="foot-copy">© <span id="year"></span> The Biz Ally. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+    menuToggle.textContent = isOpen ? '✕' : '☰';
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', false);
+    menuToggle.textContent = '☰';
+  }));
+
+  // scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
