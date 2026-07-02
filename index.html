@@ -60,7 +60,6 @@
 
   ::selection{ background: var(--amber); color: var(--ink); }
 
-  /* focus visibility */
   a:focus-visible, button:focus-visible{
     outline: 2px solid var(--amber);
     outline-offset: 3px;
@@ -261,23 +260,14 @@
     background: rgba(242,169,59,0.07); border: 1px solid rgba(242,169,59,0.25);
   }
 
-  /* media placeholder frames */
+  /* media frames */
   .case-media{ display:flex; flex-direction:column; gap:14px; }
   .shot{
     position:relative; border-radius: 14px; overflow:hidden;
-    background: var(--ink-soft); border: 1px dashed var(--ink-line);
+    background: var(--ink-soft); border: 1px solid var(--ink-line);
     aspect-ratio: 16/10; display:flex; flex-direction:column;
   }
-  .shot .chrome{
-    display:flex; gap:6px; padding: 10px 12px; border-bottom:1px solid var(--ink-line);
-  }
-  .shot .chrome span{ width:8px; height:8px; border-radius:50%; background: var(--ink-line); }
-  .shot .shot-body{
-    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap: 8px; padding: 20px; text-align:center;
-  }
-  .shot .shot-body .icon{ font-size:1.6rem; opacity:0.5; }
-  .shot .shot-body .cap{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color: var(--muted); }
+  .shot img{ width:100%; height:100%; object-fit:cover; flex:1; }
   .shot.small{ aspect-ratio: 16/7; }
   .shot-row{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
 
@@ -316,14 +306,28 @@
   .about{ display:grid; grid-template-columns: 0.8fr 1.2fr; gap: 54px; align-items:center; }
   .about-photo{
     aspect-ratio: 4/5; border-radius: 20px; background: var(--ink-soft);
-    border: 1px dashed var(--ink-line); display:flex; align-items:center; justify-content:center;
-    flex-direction:column; gap:10px;
+    border: 1px solid var(--ink-line); overflow:hidden;
   }
-  .about-photo .cap{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--muted); }
+  .about-photo img{ width:100%; height:100%; object-fit:cover; }
   .about-copy p{ font-size:1.05rem; line-height:1.75; color:#D6D3C9; margin: 0 0 18px; }
   .about-copy .signoff{ font-family:'Space Grotesk', sans-serif; font-weight:600; color: var(--amber); margin-top: 8px; }
 
   @media (max-width: 860px){ .about{ grid-template-columns: 1fr; } .about-photo{ max-width: 260px; } }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{ background: var(--ink-soft); border-top:1px solid var(--ink-line); border-bottom:1px solid var(--ink-line); }
+  .testi-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .testi-card{
+    background: var(--ink); border: 1px solid var(--ink-line); border-radius: 16px;
+    padding: 28px 24px; display:flex; flex-direction:column; gap: 18px;
+  }
+  .testi-card .quote-mark{ font-family:'Space Grotesk', sans-serif; font-size:2.2rem; color: var(--amber); line-height:1; }
+  .testi-card p{ margin:0; font-size:0.98rem; line-height:1.65; color:#D6D3C9; flex-grow:1; }
+  .testi-who{ display:flex; flex-direction:column; gap:2px; border-top:1px solid var(--ink-line); padding-top:14px; }
+  .testi-who .name{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:0.96rem; color:var(--white); }
+  .testi-who .role{ font-family:'IBM Plex Mono', monospace; font-size:0.76rem; color: var(--muted); text-transform:uppercase; letter-spacing:0.04em; }
+
+  @media (max-width: 860px){ .testi-grid{ grid-template-columns: 1fr; } }
 
   /* ---------- CTA / CONTACT ---------- */
   .cta-section{
@@ -471,16 +475,14 @@
       <div class="case reveal">
         <div class="case-media">
           <div class="shot">
-  <img src="images/speaking_coursedashboard.png" alt="Course Dashboard" style="width:100%;height:100%;object-fit:cover;">
-</div>
+            <img src="images/speaking_coursedashboard.png" alt="Course dashboard">
+          </div>
           <div class="shot-row">
             <div class="shot small">
-               <img src="images/speaking_coach_workflow.png" alt="Course Dashboard" style="width:100%;height:100%;object-fit:cover;">
-</div>
+              <img src="images/speaking_coach_workflow.png" alt="Workflow automation">
             </div>
             <div class="shot small">
-              <img src="images/speaking_coach_lead_magnet_page.jpg" alt="Course Dashboard" style="width:100%;height:100%;object-fit:cover;">
-</div>
+              <img src="images/speaking_coach_lead_magnet_page.jpg" alt="Lead magnet page">
             </div>
           </div>
         </div>
@@ -529,14 +531,14 @@
       <div class="case flip reveal">
         <div class="case-media">
           <div class="shot">
-  <img src="images/bookauthor_CRMpipeline.png" alt="CRM Pipeline" style="width:100%;height:100%;object-fit:cover;">
-</div>
+            <img src="images/bookauthor_CRMpipeline.png" alt="CRM pipeline">
+          </div>
           <div class="shot-row">
             <div class="shot small">
-              <img src="images/bookauthor_dashboard.png" alt="Course dashboard" style="width:100%;height:100%;object-fit:cover;"> </div>
+              <img src="images/bookauthor_dashboard.png" alt="Dashboard">
             </div>
             <div class="shot small">
-              <img src="images/leadautomation.png" alt="Lead automation" style="width:100%;height:100%;object-fit:cover;"> </div>
+              <img src="images/leadautomation.png" alt="Lead automation">
             </div>
           </div>
         </div>
@@ -580,32 +582,31 @@
       <div class="case reveal">
         <div class="case-media">
           <div class="shot">
-            <img src="images/qs_outline.png" alt="Course Outline" style="width:100%;height:100%;object-fit:cover;"> </div>
+            <img src="images/qs_outline.png" alt="Course outline">
           </div>
           <div class="shot-row">
             <div class="shot small">
-              <img src="images/qs_pricing.png" alt="Course Outline" style="width:100%;height:100%;object-fit:cover;"> </div>
+              <img src="images/qs_pricing.png" alt="Pricing page">
             </div>
             <div class="shot small">
-              <img src="images/qs_course.png" alt="course still" style="width:100%;height:100%;object-fit:cover;"> </div>
-          </div>
+              <img src="images/qs_course.png" alt="Course still">
             </div>
           </div>
         </div>
         <div class="case-body">
           <span class="case-index mono">03 / Case study</span>
           <h3>Relationship Coach Growth System</h3>
-          <div class="case-sub">Course Built from Scratch</div>
+          <div class="case-sub">Course built from scratch</div>
 
           <div class="case-block">
             <span class="k">The problem</span>
-            <p>The brand wants to build a course to offer relationship coaches where they can upsell their SaaS product.</p>
+            <p>The brand wanted to build a course to offer relationship coaches, where they could upsell their SaaS product.</p>
           </div>
 
           <div class="case-block">
             <span class="k">What I built</span>
             <ul>
-              <li>Built SaaS Product from scratch</li>
+              <li>Built SaaS product from scratch</li>
               <li>Researched and built course module</li>
               <li>Onboarding for coaches and clients</li>
               <li>Video editing with graphic motion for courses</li>
@@ -675,14 +676,53 @@
   <section id="about">
     <div class="wrap about">
       <div class="about-photo reveal">
-        <span class="icon" style="font-size:1.8rem;opacity:0.4;">◐</span>
-        <div class=“capmono”> <img src="images/ally_photo.png" style="width:100%;height:100%;object-fit:cover;"> </div>
+        <img src="images/ally_photo.png" alt="Ally Calingo">
+      </div>
       <div class="about-copy reveal">
         <span class="sec-eyebrow">About</span>
         <h2 style="margin-bottom:22px;">Hi, I'm Ally (al-LY)! The ally behind The Biz Ally.</h2>
         <p>I've spent the last 3+ years inside GoHighLevel, building the backend systems that let coaches and online businesses grow without duct-taping ten different tools together.</p>
         <p>My job isn't to hand you a funnel and disappear. It's to build the full system (funnel, automation, CRM, and course delivery), so your business runs like it has a team behind it, even when it's just you.</p>
         <p class="signoff">— Ally Calingo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-eyebrow">Client feedback</span>
+        <h2>What it's like to work with an ally.</h2>
+      </div>
+
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <span class="quote-mark">"</span>
+          <p>Ally was responsible for the full setup and management of our CRM system, and supporting our email marketing and social media efforts. I would recommend Ally without hesitation. Any team would be lucky to have her.</p>
+          <div class="testi-who">
+            <span class="name">Nina</span>
+            <span class="role">Ecommerce</span>
+          </div>
+        </div>
+
+        <div class="testi-card reveal">
+          <span class="quote-mark">"</span>
+          <p>I'm very happy with the direction of the project so far. This developer clearly understands both the technical side of GHL and the strategic/business side behind what I'm trying to build. I especially appreciate her ability to think beyond execution and proactively suggest scalable solutions and best practices.</p>
+          <div class="testi-who">
+            <span class="name">Leedo</span>
+            <span class="role">SaaS Agency Owner</span>
+          </div>
+        </div>
+
+        <div class="testi-card reveal">
+          <span class="quote-mark">"</span>
+          <p>The best VA I've hired by a mile — the amount she's helped me in the first 4 days is more than what past VAs have done in months. Truly appreciate Ally!</p>
+          <div class="testi-who">
+            <span class="name">Yasir</span>
+            <span class="role">Public Speaking Coach</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -716,7 +756,6 @@
 </footer>
 
 <script>
-  // mobile nav toggle
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
   menuToggle.addEventListener('click', () => {
@@ -730,7 +769,6 @@
     menuToggle.textContent = '☰';
   }));
 
-  // scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
